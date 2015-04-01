@@ -1,10 +1,11 @@
-# MCCSimulator
-Repository of MCC Simulator project
+# MCC Modeling and Simulation 
 
-Welcome to MCCSimulation project.. In this project, we are modeling and simulating a MCC architecture.
+Welcome to MCC Modeling and Simulation  project.. In this project, we are modeling and simulating a MCC architecture.
 
 We focus on offloading decistion (static and dynamic approach). Static approach only marks a given Task to be offloaded. Dynamic 
 approach works considering aspects as said by [1].
+
+
 
 
 [1] - Karthik Kumar, Jibang Liu, Yung-Hsiang Lu, and Bharat Bhargava. 2013. 
