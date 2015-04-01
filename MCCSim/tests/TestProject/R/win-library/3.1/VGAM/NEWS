@@ -1,0 +1,1771 @@
+    *************************************************
+    *                                                *
+    *           0.9 SERIES NEWS                      *
+    *                                                *
+    **************************************************
+
+
+
+                CHANGES IN VGAM VERSION 0.9-4
+
+NEW FEATURES
+
+    o   New data sets: cfibrosis, lakeO, wine.
+    o   New functions: Select().
+    o   negbinomial(deviance = TRUE) works, provided criterion = "coef"
+        is used too.
+    o   simulate() works with binomialff(), poissonff(), rayleigh() and
+        several other families. See help(simulate.vlm) for a current listing.
+    o   coef(colon = FALSE) works for VLM objects.
+    o   pslash() has a 'very.negative = -4' argument.
+        Thanks to Tiago Pereira for picking this up.
+    o   Some family functions have a 'summation = TRUE' argument in
+        the loglikelihood slot. Can be accessed using, e.g.,
+        logLik(fit, summation = FALSE). See ?logLik.vlm.
+        Similarly for deviance(fit, summation = FALSE).
+    o   Tested okay on R 3.1.0.
+
+
+BUG FIXES and CHANGES
+
+    o   bs(), ns(), scale() and poly() are no longer smart,
+        but they will handle simple terms such as bs(x) and scale(x).
+        The smart version of those functions have been renamed to
+        sm.bs(), sm.ns(), sm.scale(), sm.poly();
+        these will handle complicated terms such as sm.bs(sm.scale(x)).
+    o   Renamed functions: identity() has become identitylink().
+    o   Argument names changed:
+        'ITolerances' renamed to 'I.tolerances' thoughout,
+        'EqualTolerances' renamed to 'eq.tolerances' thoughout.
+    o   Bug in mix2normal() fixed in @initialize. Thanks to Troels Ring
+        for finding the bug.
+    o   Upon loading the package, no warnings (such as masking) is
+        given.
+    o   multinomial(parallel = TRUE) now applies the parallelism
+        constraint to the intercept.
+    o   If a factor response is ordered then a warning is issued for
+        multinomial().
+    o   predict(fit, newdata = zdata2, type = "response") used
+        to fail for z[ai][poisson][,ff]() and z[ai][negbinomial][,ff]()
+        families. Thanks to Diego Nieto Lugilde for picking this up.
+    o   A bug with offsets and coefstart has been fixed.
+        Thanks to Giuseppe Casalicchio for picking this up.
+    o   Variables "Blist" replaced by "Hlist".
+    o   Expression new.s.call no longer used in vglm.fit() and vgam.fit().
+        Musual has been replaced by M1.
+    o   Variable names changed: prinia, Huggins89table1, Huggins89.t1.
+    o   Memory leaks found by valgrind have been patched.
+
+
+
+                CHANGES IN VGAM VERSION 0.9-3
+
+NEW FEATURES
+
+    o   New argument:
+        posbinomial(omit.constant = FALSE), set to TRUE if
+        comparing M_0/M_h models with M_b/M_t/M_tb/M_bh/M_th/M_tbh.
+    o   rcim() works with family = multinomial; in conjunction with
+        arguments M and cindex to be specified.
+        rcim() also had additional arguments and new defaults.
+    o   New arguments:
+        positive Bernoulli functions have 'p.small' and 'no.warning'
+        arguments.
+    o   AICc() is new.
+    o   family.name() generic is new.
+    o   New data sets: prinia.
+    o   logLik() methods function for "qrrvglm" objects.
+        AIC() methods function for "qrrvglm" objects is corrected.
+        AIC() methods function for "cao" objects is new.
+
+
+BUG FIXES and CHANGES
+
+    o   vgam() with nontrivial constraints is giving incorrect
+        predict(vgam.object) and fitted(vgam.object).
+        Not yet fixed up but will try soon!
+        Thanks to Zachary Kurtz for picking this up.
+    o   Argument 'which.lp' changed to 'which.linpred'.
+        Argument 'which.eta' changed to 'which.linpred'.
+        Argument 'lapred.index' changed to 'linpred.index'.
+        Argument 'whichSpecies' changed to 'which.species'.
+        Argument 'plot.it' changed to 'show.plot'.
+        Argument 'intervalWidth' in plotqvar() changed to 'interval.width'.
+    o   Decommissioned VGAM family functions: cennormal1().
+    o   posbinomial() returns @extra$N.hat and @extra$SE.N.hat
+        if the number of trials is constant across observations.
+    o   calibrate() restored to working order.
+    o   Argument names changed:
+        'szero' renamed to 'str0' thoughout,
+        'allowable.length' renamed to 'length.arg' in is.Numeric().
+    o   Function uqo() has been withdrawn. Reasons:
+        (i)  It needs to be rewritten in C but unfortunately am too busy...
+        (ii) It is a very difficult optimization problem, probably too
+        difficult to solve in general efficiently.
+    o   Arguments in rcqo() have changed.
+    o   Data set Perom withdrawn, but deermice remains.
+    o   Argument 'zero' in binom2.or() had a bug.
+
+
+
+                CHANGES IN VGAM VERSION 0.9-2
+
+NEW FEATURES
+
+    o   New family functions: logF(d), biclaytoncop(dr), binormalcop(dp),
+        bistudentt(d), and a basic normal.vcm(),
+        zabinomialff(), zageometricff(), zanegbinomialff(), zapoissonff(),
+        zibinomialff(), zigeometricff(), zinegbinomialff().
+    o   cao.control()suppress.warnings == TRUE is new, and it
+        suppresses warnings (esp. lack of convergence) by default.
+    o   The convergence criterion now takes into consideration the sample
+        size, somewhat. It should stop premature convergence for very
+        large data sets.
+    o   New functions: dpois.points(), log1pexp(), expint(), expexpint(),
+        expint.E1(), dbinorm(), rbinorm(), kendall.tau(), qvar().
+        Also, depvar(type = c("lm", "lm2")) has a 'type' argument.
+        Also, aux.posbernoulli.t() is new.
+    o   New link functions: logneg().
+    o   New data sets: beggs, corbet, deermice, machinists, prats, V1.
+    o   Argument 'form2' added to vgam(), so vgam.fit() has been modified too.
+    o   posbernoulli.tb() seems correct, and works for any
+        number of sampling occasions. And posbernoulli.[b,t,tb]() have
+        more argument choices.
+    o   BIC() is now available, it is based on AIC(..., k = log(nobs(object))).
+        But users need to use it with care.
+        Also, AICvlm() has a 'corrected = FALSE' argument.
+    o   fittedvlm() now has a 'type.fitted' argument that allows
+        different fitted values to be computed from a vglm()/vgam()
+        object. Several family functions such as zi*()
+        [e.g., zipoisson()] and za*() [e.g., zapoisson()]
+        have a 'type.fitted' argument that matches it.
+
+
+BUG FIXES and CHANGES
+
+    o   Default arguments have changed, esp. wrt 'zero' for:
+        zibinomial(), zinegbinomial().
+    o   cao() used to crash due to memory problems and segment faults.
+    o   Syntax such as parallel = TRUE ~ 1 is now supported. Hence argument
+        'apply.parint' has been removed.
+    o   posbernoulli.b() has a new and superior parameterization, & faster .
+    o   Printed output when trace = TRUE has been improved, especially
+        for large data sets.
+    o   For ordination methods "lv" has been generally replaced by
+        "latvar".
+        "latvar()" is supported, "lv()" will become fully
+        deprecated soon.  But "lvplot()" is retained.
+        Also, this applies to most argument names and list
+        component names returned, e.g.,
+        OLD NAME:                 NEW NAME:
+        isdlv                     isd.latvar
+        varlvI                    varI.latvar
+        lvOrder                   latvar.order
+        OptimumOrder              Optimum.order
+        maxfitted                 max.fitted
+        SD.Ainit                  sd.Ainit
+        SD.Cinit                  sd.Cinit
+        SD.sitescores             sd.sitescores
+    o   For ordination methods "ccoef" has been generally replaced by
+        "concoef". This applies to most methods functions.
+        Attributes have changed too, from "ccoefficients"
+        to "con.coefficients".
+    o   VGAM now suggests \pkg{VGAMdata}.
+    o   Renamed VGAM family functions:
+        OLD NAME:                 NEW NAME:
+        normal1()                 uninormal()
+        bivgamma.mckay()          bigamma.mckay()
+        cennormal1()              cennormal()
+        dcennormal1()             double.cennormal()
+        dexpbinomial()            double.expbinomial()
+        explogarithmic()          explogff()
+        frank()                   bifrankcop(dpr)
+        [dpr]frank()              [dpr]bifrankcop()
+        fnormal1()                foldnormal()
+        [dpqr]fnorm()             [dpqr]foldnorm()
+        gumbelIbiv()              bigumbelI()
+        mbinomial()               matched.binomial()
+        mix2normal1()             mix2normal()
+        mix2normal1.control()     mix2normal.control()
+        nidentity()               negidentity()
+        normal1()                 uninormal()
+        nloge()                   negloge()
+        pnorm2()                  pbinorm(dpr)
+        pareto1()                 paretoff()
+        poissonp()                poisson.points()
+        powl()                    powerlink()
+        recnormal1(d)             recnormal()
+        rig()                     rigff()
+        skewnormal1()             skewnormal()
+        [dr]snorm()               [dr]skewnorm()
+        tpareto1()                truncpareto()
+        wald()                    waldff()
+    o   Decommissioned functions:
+        OLD                       NEW
+        dnorm2()                  dbinorm()
+        pnorm2()                  pbinorm()
+    o   Renamed internal functions:
+        OLD                       NEW
+        lv.cao()                  latvar.cao()
+    o   Renamed arguments:
+        OLD                       NEW
+        equalsd                   eq.sd
+    o   Internally, variables identifiers with "_" have been replaced
+        by a ".", e.g., X_vlm becomes X.vlm.
+        Saved component names follow this change too, e.g.,
+        @extra$ncols_X_lm becomes @extra$ncols.X.lm.
+    o   Improved:
+        fgm() has its explicit EIM programmed in.
+    o   summary() applied to a "rcim0" or "rcim" object now works.
+    o   Family functions which have changed: zigeometric().
+    o   Slotname "rss" changed to "res.ss".
+    o   zinegbinomial()@weight continues to use Fisher scoring
+        until not all the random variates are zeros or nonzeros.
+    o   loglinb2(zero = 3) and loglinb3(zero = 4:6) are defaults
+        now (used to be zero = NULL).
+    o   Data sets moved: wffc, wffc.nc, etc. moved to \pkg{VGAMdata}.
+    o   stats::print.anova() no longer called directly by lrtest().
+
+
+
+                CHANGES IN VGAM VERSION 0.9-1
+
+NEW FEATURES
+
+    o   A companion package, called \pkg{VGAMdata}, is new.
+        Some large data sets previously in \pkg{VGAM} have
+        been shifted there, e.g., xs.nz and ugss.
+        In \pkg{VGAMdata} there is (new) oly12 and students.tw.
+    o   pnorm2() argument names have changed from 'sd1' to
+        'var1', etc. and 'rho' to 'cov12'.
+        See documentation.
+        Warning given if it returns any negative value.
+    o   Introduction of g-type arguments for grid search.
+    o   Improved initial values for: lomax().
+    o   Argument 'bred' works for poissonff().
+    o   latvar() generic available, identical to lv(). But the
+        latter will be withdrawn soon.
+    o   Rank() generic available for RR-VGLMs, QRR-VGLMs, CAO models.
+    o   New function: pgamma.deriv(), pgamma.deriv.unscaled(),
+        vlm2lm.model.matrix().
+    o   New VGAM family functions:
+        posbernoulli.b(), posbernoulli.t(), posbernoulli.tb(tau = 2 or 3).
+        These provide estimates of N as well as its standard error.
+        Also, truncgeometric() and truncweibull() are new.
+        Also, SUR() is new.
+        Also, binom2.rho.ss() does not work yet.
+    o   New argument 'matrix.out = FALSE' for constraints.vlm().
+    o   cm.vgam() has a few more arguments to provide more flexibility.
+        But there should be no changes for VGAM users at this stage.
+    o   Renamed functions: confint_rrnb() is now renamed to
+        Confint.rrnb() and confint_nb1() is now renamed to Confint.nb1().
+    o   Some changes to component names returned by Confint.rrnb() and
+        Confint.nb1(): $CI. and $SE. are uppercase.
+    o   Some zero-inflated VGAM family functions return a
+        "vglm" object with @misc$pstr0 for the estimated
+        probability of a structural zero.
+    o   New data set: olym12.
+        Note that Students.tw is earmarked for \pkg{VGAMdata}.
+    o   Data sets renamed:
+        olympic renamed to olym08.
+    o   Qvar() has a 'which.eta = 1' argument specifying which linear
+        predictor to use. So quasi-variances are now
+        available to models with M > 1 linear predictors.
+    o   Tested okay on R 3.0.0.
+
+
+BUG FIXES and CHANGES
+
+    o   VGAM now depends on R >= 2.15.1.
+    o   Fortran array bounds problems (picked up by
+        AddressSanitizer) have been fixed.
+    o   All "no visible binding for global variables" warnings
+        have been suppressed.
+    o   vgam() with a s(spar = myspar) term should run, and if myspar
+        is extracted from a previous vgam() model then the two models
+        should effectively be the same.
+    o   summaryvgam() did not calculate or print out all the p-values
+        for testing linearity.
+    o   fnormal1()@initialize was faulty wrt lm.wfit().
+    o   zageometric() and zigeometric() handle multiple responses.
+    o   mlogit(inverse = TRUE) and mlogit(inverse = FALSE)
+        were switched. Now multinomial() makes use of mlogit().
+        mlogit() now calls care.exp() to avoid overflow and underflow;
+        this stops multinomial() from returning a NA as a fitted
+        value if abs(eta) is very large.
+    o   arwz2wz() introduced to simplify multiple responses
+        working weight matrices (wrt construction).
+    o   Renamed functions:
+        dhuggins91() is now dposbern(),
+        huber() is now huber2(),
+        ei() is now eifun(), eij() is now eijfun(),
+        rss.vgam() is now ResSS.vgam().
+    o   fisherz(theta) was wrong. Corrected, then replaced by
+        atanh(theta).
+    o   [dpq]dagum(x), [dpq]lomax(x), [dpq]sinmad(x), etc. handled
+        correctly for x = 0, Inf, -Inf, NaN, NA.
+    o   qdagum(x) failed due to 'Scale' [thanks to Alena Tartalova].
+    o   Arguments renamed:
+        'intercept.apply' renamed to 'apply.parint',
+        'Norrr' renamed to 'noRRR' (warning/error message issued),
+        'nowarning' renamed to 'noWarning' in vglm.control().
+    o   seq2binomial()@loglikelihood includes the binomial
+        lchoose() constants.
+    o   qgev() bug [thanks to Alex Cannon], and qgpd().
+    o   cao() produces less error/warning messages usually.
+    o   Data sets corrected for errors: chinese.nz.
+    o   Data set changes: gew had incorrect y1 and y2 values,
+        and variables x1 to x4 have been renamed to value.g, capital.w,
+        etc. The year variable has been added.
+
+
+
+                CHANGES IN VGAM VERSION 0.9-0
+
+NEW FEATURES
+
+    o   Major change: VGAM family functions no longer have
+        arguments such as earg, escale, eshape, etc. Arguments such
+        as offset that used to be passed in via those arguments can
+        be done directly through the link function. For example,
+        gev(lshape = "logoff", eshape = list(offset = 0.5)) is
+        replaced by gev(lshape = logoff(offset = 0.5)). The @misc
+        slot retains the $link and $earg components, however,
+        the latter is in a different format. Functions such as
+        dtheta.deta(), d2theta.deta2(), eta2theta(), theta2eta()
+        have been modified. Link functions have been simplified
+        somewhat.  The casual user will probably not be affected,
+        but programmers will. Sorry about this!
+    o   New VGAM family functions:
+        [dpqr]gompertz(), [dpqr]gumbelII(), [dpr]lindley(),
+        [dpqr]makeham(), [dpqr]perks().
+    o   df.residual() supports a new formula/equation for 'type = "lm"'.
+    o   garma("reciprocal") supported.
+    o   is.parallel() for constraint matrices summary.
+    o   Improved family functions:
+        these can handle multiple responses:
+        benini(), chisq(), erlang(), exponential(), gamma1(), geometric(),
+        gpd(), inv.gaussianff(), logff(), maxwell(), rayleigh(),
+        yulesimon(), zetaff().
+    o   New data set: hormone
+        [http://www.stat.tamu.edu/~carroll/data/hormone_data.txt].
+    o   If a factor response is not ordered then a warning
+        is issued for acat(), cratio(), cumulative() and sratio().
+    o   New dpqr-type functions:
+        [dpqr]perks(), [dpqr]mperks(), [dpqr]mbeard().
+    o   Argument 'parallel' added to gamma2().
+    o   New link functions: mlogit().
+
+
+BUG FIXES and CHANGES
+
+    o   zibinomial() had 1 wrong element in the EIM; one of the
+        corrections of VGAM 0.8-4 was actually incorrect.
+    o   zibinomial() blurb was wrong:
+        previously was "(1 - pstr0) * prob / (1 - (1 - prob)^w)" where
+        prob is the mean of the ordinary binomial distribution.
+        Now is "(1 - pstr0) * prob".
+    o   betaff() no longer has "A" and "B" arguments; they ar
+        extracted from "lmu = elogit(min = A, max = B)". 
+    o   binom2.rho() has "lmu" as a new argument 2.
+    o   logistic2() has has zero = -2 as default, and can handle
+        multiple responses.
+    o   gengamma() returned the wrong mean (picked up by Andrea Venturini):
+        not b * k but b * gamma(k + 1 / d) / gamma(k).
+    o   tobit.Rd nows states vector values for 'Lower' and 'Upper'
+        are permitted. Also, the @misc$Lower and @misc$Upper are
+        matrices of the same dimension as the response.
+    o   constraints.vlm(type = c("vlm", "lm")) has been changed to
+        constraints.vlm(type = c("lm", "term")) [respectively].
+    o   Rcam() renamed to Rcim(), and rcam() renamed to rcim().
+        Class "rcam" changed to "rcim".
+    o   Days changed from "Monday" to "Mon" in all crash data frames, etc.
+    o   w.wz.merge() written to handle the working weights
+        for multiple responses.
+        w.y.check() written to check the integrity of prior
+        weights and response.
+    o   Argument 'sameScale' changed to 'eq.scale',
+        'quantile.probs' in negbinomial-type families changed to 'probs.y'.
+    o   No more warnings: dirmultinomial().
+    o   Renamed arguments: benini(earg <- eshape),
+        binormal(equalmean <- eq.mean),
+        binormal(equalsd <- eq.sd),
+    o   dirmultinomial() can handle a 1-row response [thanks to Peng Yu].
+    o   weibull() gives improved warnings re. the shape parameter wrt
+        regularity conditions.
+    o   The 12 most time-consuming examples have been placed in a
+        \dontrun{} to save time.
+    o   Argument "prob.x" renamed to "probs.x".
+    o   Argument "hbw" removed from iam().
+    o   Argument 'name' is passed into .C and .Fortran() [in dotC()
+        and dotFortran()] is now okay because the first argument
+        is unnamed.
+
+
+
+                CHANGES IN VGAM VERSION 0.8-7
+
+NEW FEATURES
+
+    o   Modified VGAM family functions:
+        genbetaII()@initialize has been improved, as well as
+        those special cases of that distribution (such as sinmad,
+        lomax, paralogistic, dagum, etc.).
+    o   Argument 'lapred.index' added to model.matrix().
+    o   npred() is now defined as a generic function (returns M).
+    o   hatvalues() and hatplot() written for vglm() objects.
+    o   The argument 'qr.arg' is set TRUE now by default in vglm().
+    o   df.residual() supports the argument 'type = c("vlm", "lm")'.
+    o   Argument 'nowarning' added to vglm.control().
+    o   New data set: ucberk.
+    o   Improved functions: rposbinom(), rposgeom(), rposnegbin(),
+        rpospois().
+    o   Tested okay on R 2.15.0.
+
+
+BUG FIXES and CHANGES
+
+    o   Labelling of the linear predictors for sratio(), cratio()
+        etc. was faulty.
+    o   pbetabinom.ab() did not recycle shape1 correctly
+        [found by David Venet].
+    o   Arguments lower.tail and log.p not supported (temporarily) in
+        pposbinom() and qposbinom().
+
+
+
+                CHANGES IN VGAM VERSION 0.8-6
+
+NEW FEATURES
+
+    o   Modified VGAM family functions:
+        sinmad()@initialize has been improved.
+
+
+BUG FIXES and CHANGES
+
+    o   VGAM now depends on R >= 2.14.0.
+    o   Trying to eliminate some residual errors with the NAMESPACE.
+
+
+
+                CHANGES IN VGAM VERSION 0.8-5
+
+NEW FEATURES
+
+    o   New VGAM family functions:
+        negbinomial.size(), zabinomial(dpqr),
+        zageometric(dpqr), [dpqr]posgeom().
+    o   New link functions: nbcanlink().
+    o   Modified VGAM family functions:
+        posnegbinomial(), zanegbinomial() and zinegbinomial()
+        use the nsimEIM argument;
+        zipoisson() handles a matrix response;
+        all [dpqr]zi-type functions handle zero-deflation,
+        normal1() can model the variance too as the 2nd parameter.
+    o   Rudimentary methods functions for lrtest() and
+        update(), based on packages lmtest and base.
+    o   The VGAM family functions for genetic models have been improved
+        wrt initial values.
+    o   New data sets: xs.nz.
+
+
+BUG FIXES and CHANGES
+
+    o   In anticipation for R version 2.15.0, VGAM imports
+        from stats4 'coef', 'plot', 'summary', 'vcov'.
+        Calls to 'print' have been replaced by 'show'
+        since VGAM uses S4 methods.
+        Numerous NAMESPACE changes have been made.
+        No more warnings during checking and installation!
+    o   Labelling in summary() of vglm() objects changed. It
+        now closely follows glm(). In particular, it has
+        changed from c("Value", "Std. Error", "t value") to
+        c("Estimate", "Std. Error", "z value").
+        Note that "z value" might change later to, e.g., "Wald".
+    o   Zero-inflated and zero-altered functions have renamed and
+        reordered arguments. Ouch!
+        These include 'pstr0' for probability of a structural 0 [zero-inflated],
+        and 'pobs0' for probability of an observed 0 [zero-altered].
+        For example, argument lpstr0 replaces lphi in zipoisson().
+        The order of these arguments, including the respective
+        dpqr-type functions, may have changed too.
+    o   zapoisson() now implements Fisher scoring.
+    o   zipoissonff() had the wrong sign for the non-diagonal EIM element.
+    o   nobs() is now defined as a generic function (needed
+        for older versions of R---versions 2-12.2 or earlier, actually).
+    o   Data sets renamed:
+        uscrime and usgrain renamed to crime.us and grain.us;
+        bminz renamed to bmi.nz,
+        nzc renamed to chinese.nz,
+        nzmarital renamed to marital.nz.
+    o   Improved family functions: genbetaII(), betaII(), sinmad(), dagum(), 
+        lomax(), invlomax(), fisk(), invparalogistic(), paralogistic();
+        wrt fitted values (range checks in place now).
+        These functions have many argument names changed, e.g.,
+        link.a is now lshape1.a, init.a is now ishape1.a.
+        Also, some default initial values have changed from 1 to 2.
+    o   Argument names changed (Ouch!):
+        q.lag.ma changed to q.ma.lag in garma().
+
+
+
+
+                CHANGES IN VGAM VERSION 0.8-4
+
+NEW FEATURES
+
+    o   VGAM family functions renamed (Ouch!):
+        1.  'betabinom.ab' renamed to 'betabinomial.ab'.
+    o   Other functions renamed (Ouch!):
+        1.  '[dpr]betabin' renamed to '[dpr]betabinom' etc.;
+        2.  '[dpr]betabin.ab' renamed to '[dpr]betabinom.ab' etc.;
+    o   Slot names changed (Ouch!):
+        1. 'link'    renamed to 'linkfun' for class "vglmff";
+        2. 'inverse' renamed to 'linkinv' for class "vglmff".
+    o   Extra arguments added to freund61().
+    o   New VGAM family functions:
+        abbott(), zigeometric(dpqr), huber1().
+    o   New functions: [p]polono(),
+        depvar() generic for the dependent (response) variable,
+        Qvar() and explink() for quasi-variances.
+    o   Improved functions: [d]polono(), [dr]betabin() handles rho = 0
+        (suggested by Peng Yu).
+    o   Improved family functions: normal1() handles matrix 'weights'.
+    o   Defaults changed: [dr]betabin(rho = 0).
+    o   New methods functions: nobs(), nvar(), depvar().
+    o   Renaming: fitted.vlm() is now fittedvlm(),
+                  persp.qrrvglm() is now perspqrrvglm(),
+                  predict.qrrvglm() is now predictqrrvglm(),
+                  predict.vglm() is now predictvglm().
+    o   New data sets: finney44.
+    o   VGAM now depends on R >= 2.11.1.
+    o   Tested okay on R 2.14.0.
+
+
+BUG FIXES
+
+    o   zibinomial() had 2 wrong elements in the EIM,
+        thanks to Alan Welsh for picking this up.
+    o   margeff() for cumulative() was faulty.
+    o   blurb slot of binormal() was faulty.
+    o   betabinomial() did not return the estimated rho in @misc$rho as
+        did betabinomial.ab().
+    o   kumar() did not initialize well with non-integer prior weights.
+    o   rdagum() did not handle the 'scale' argument correctly.
+    o   codes() in s() is defunct so it has been replaced.
+
+
+
+                CHANGES IN VGAM VERSION 0.8-3
+
+NEW FEATURES
+
+    o   Argument names changed (Ouch!):
+        1.  'method.init' renamed to 'imethod';
+        2.  'k' renamed to 'size' in negbinomial(), zanegbinomial(),
+             posnegbinomial(), and zinegbinomial():
+             e.g., 'lk' renamed to 'lsize', 'ik' renamed to 'isize', etc.
+    o   New data sets: hued, huie, huse, ugss, uscrime;
+        usagrain renamed to usgrain.
+    o   The "prior.weights" slot is now a "matrix", not "numeric".
+    o   [dpr]betabin.ab() now handles size = 0. Thanks to Robert Wolpert
+        for picking up this bug.
+    o   New VGAM family functions:
+        [d]binormal(), [dr]huggins91() but this is not working properly,
+        [dpqr]explogarithmic(), polya().
+    o   New functions: [dpqr]tobit().
+    o   Improved family functions: tobit() implements the proper EIM for the
+        standard model, dcennormal1() has some new arguments [and renamed],
+        cennormal1(), cenrayleigh() renamed.
+    o   VGAM now depends on R >= 2.10.0.
+    o   Rcam(), moffset(), etc. for RCAMs have been improved and modified.
+    o   VGAM family functions currently withdrawn: frechet3().
+    o   Tested ok on R 2.13.0.
+
+
+BUG FIXES
+
+    o   tobit()@loglikelihood had omitted the constant in dnorm().
+        Also, tobit() uses simulated Fisher scoring (for nonstandard model).
+    o   moffset() was buggy.
+    o   ABO() is a little more robust.
+    o   dirichlet()@loglikelihood miscalculated.
+        Ditto for gaussian()@loglikelihood (constants were omitted).
+        Thanks to Arne Henningsen for picking up these bugs.
+    o   zipoissonff() did not initialize correctly and labelling was wrong
+        with matrix responses.
+
+
+
+                CHANGES IN VGAM VERSION 0.8-2
+
+NEW FEATURES
+
+    o   Objects of class "vglmff" have a "infos" slot to give
+        information about the family.
+    o   New functions: lambertW(), rcam(), wffc.P3(),
+        wffc.P3star(), confint_rrnb(), confint_nb1().
+    o   New VGAM family functions:
+        binom2.Rho(), [dpqr]expgeometric(),
+        [dpqr]genrayleigh(), [dpqr]huber(),
+        [dpqr]koenker(), studentt[23](), zipoissonff().
+    o   Argument 'imethod' changed to 'method.init' for some
+        families, e.g., cnormal1(), tobit(), weibull().
+    o   Improvements have been made to binom2.rho().
+    o   Improved family functions:
+        negbinomial() has a new argument 'parallel',
+        micmen() has more initial value choices and fitting algorithms,
+        kumar(), studentt() and studentt2() now implement the EIM,
+        normal1() can handle multiple responses.
+    o   Argument names changed:
+        'init.rho' renamed to 'irho' in binom2.rho(),
+        'a' renamed to 'scale' in rayleigh(),
+        'Structural.zero' renamed to 'szero' thoughout.
+    o   zapoisson() permutes the linear/additive predictors.
+    o   Several families such as negbinomial(), z[ai]negbinomial(),
+        zapoisson(), gamma2(), handle zero = c(-2, 3), say,
+        i.e., negative and positive values.
+    o   New data sets: about half a dozen road crash data frames of
+        2009 NZ data.
+    o   constraints(vglmfit) now has a 'type' argument that can be fed
+        into the original fit (type = "lm") as the constraints argument.
+    o    vchol() takes drastic action to avoid infinite looping: it sets
+        the working weights to be proportional to the order-M diagonal
+        matrix.
+    o    lognormal() and lognormal3() now have zero = 2 as the default
+        (was zero = NULL).
+    o    Some variable names within grc() changed, e.g., Row. and not Row.
+    o   The smartpred package within VGAM has updated poly(), ns(),
+        bs() and scale() for R version 2.12.0 (2010-10-15).
+        Calls to smartpredenv are now VGAM:::smartpredenv.
+
+
+BUG FIXES
+
+    o   VGAM:::VGAMenv is used now to avoid problems locating
+        this environment.
+    o   Input of the mustart, etastart and coefstart arguments at
+        the solution should results in only one iteration being needed.
+    o   binomialff() and categorical familes (e.g., multinomial) only
+        accept a factor or non-negative counts as the response.
+        This allows the 'weights' vector to have any value really.
+        In the past the denominator of a sample proportion was allowed
+        via the 'weights' argument.
+    o   wffc.P1() had some rounding problems, e.g., with 0.280 m.
+
+
+
+
+                CHANGES IN VGAM VERSION 0.8-1
+
+NEW FEATURES
+
+    o   Most of the Fortran 77 code has been converted to C.
+        This change will be largely hidden from most users
+        but there may be the occasional bug not detected.
+        Much of the heavy work was done by Alvin Sou.
+    o   lms.bcn()@loglikelihood incorporates the constants in
+        the log-likelihood.
+    o   Also, no more F90 code! This means less portability/platform
+        problems.
+    o   bivgamma.mckay, formerly mckaygamma2(), has been modified
+        substantially.
+    o   Improvements have been made to simplex() and
+        [dr]simplex() have been written.
+    o   Expectile functions for the uniform, normal and
+        exponential distributions: [dpqr]-type functions.
+    o   cqo() has EqualTolerances = TRUE and ITolerances = FALSE as
+        the default now. The result is that cqo() should work without
+        the environmental variables being scaled.
+        If it is scaled then setting ITolerances = TRUE will result
+        in greater speed and requiring less memory.
+    o   Families that deal with proportions, such as binomialff() and
+        betabinomial(), incorporate weights separately from the weights
+        generated by the response/counts. So the weights argument can
+        now have any positive values.
+    o   rrvglm(..., Norrr = NULL) can be used so that the reduced-rank
+        regression is applied to every variable including the intercept.
+    o   Renaming: ggamma() is now gengamma(), etc.
+    o   Improved functions: negbinomial() has a few new arguments.
+
+
+BUG FIXES
+
+    o   Deviance.categorical.data.vgam did not handle small
+        fitted probabilities.
+    o   binom2.rho() could produce small negative fitted probabilities.
+    o   seq2binomial() did not initialize 'mvector'.
+    o   zeta() crashed on some platforms.
+    o   cqo() appears to be working again with the new C code.
+    o   cao() still not working with the new C code.
+    o   zapoisson() did not implement the elambda argument correctly.
+    o   Tested ok on R 2.11.1.
+
+
+
+    **************************************************
+    *                                                *
+    *           0.7 SERIES NEWS                      *
+    *                                                *
+    **************************************************
+
+
+                CHANGES IN VGAM VERSION 0.7-10
+
+NEW FEATURES
+
+    o   Surv() renamed to Surv4(), class "SurvS4" renamed to "Surv4".
+    o   coef(summary(vglmObject)) returns a 3-column matrix of estimates,
+        standard errors and Wald statistics, rather than coef(vglmObject)
+        in the past.
+    o   Improved VGAM family functions: fff() uses simulated Fisher
+        scoring now and has slightly better initial values.
+    o   New VGAM family functions:
+        propodds(reverse) is equivalent to
+        cumulative(parallel=TRUE, reverse=reverse) (for convenience only).
+    o   Compatible with R 2.10.1 and the article "The VGAM package
+        for categorical data analysis," Journal of Statistical Software,
+        2010. A vignette based on this paper is included.
+    o   Argument w.als renamed to w.aml in amlnormal().
+
+
+BUG FIXES
+
+    o   VGAM family functions: fff() had poor initial values.
+    o   betabinomial()@loglikelihood required 'ycounts' to be integer.
+    o   [dpqr]betanorm() were written but not in the NAMESPACE.
+
+
+
+
+
+                CHANGES IN VGAM VERSION 0.7-9
+
+NEW FEATURES
+
+    o   New functions: margeff() for marginal effects of a vglm()
+        "multinomial" or "cumulative" model.
+    o   Almost all VGAM family functions now have a "loglikelihood"
+        slot that incorporates any constants in the density function.
+        Hence the fitted likelihood may differ by a constant from
+        previous results.
+        In particular, models such as multinomial(), cumulative() 
+        and binom2.or() have this new feature.
+    o   vglm() now has a modified 'xij' argument which implements
+        eta-specific covariates. Usage now involves the form2' argument,
+        and the 'xij' argument does not interfere with constraint matrices.
+    Documentation is supplied on the VGAM website, in particular,
+        http://www.stat.auckland.ac.nz/~yee/VGAM/doc/xij.pdf
+    o   cases.names() and variable.names() methods functions
+        written for vglm()/vgam() objects.
+    o   cumulative() has improved initial values, especially for
+        long data format, i.e., when each row of the data frame is an
+        observation rather than inputting a matrix of counts.
+    o   rrvglm() handles a factor response without giving a warning.
+    o   New data: olympic.
+    o   testf90.f90 has been renamed to testf90.f95. This may decrease
+        the incidences of compiler problems on some platforms (f95 seems
+        more popular than f90).
+    o   For cqo() objects: AIC(), resid() have been written.
+    o   Improved functions: negbinomial() default initial values are
+        more robust to outliers in the response, betabinomial() and
+        betabin.ab() have better initialization and "loglikelihood"
+        slot matches dbetabin.ab(log=TRUE).
+    o   Renamed VGAM family functions: alsqreg() becomes amlnormal().
+    o   Renamed arguments: lmu replaces link.mu in zibinomial().
+    o   dzeta(p) has changed wrt 'p'.
+    o   The functions summary.lms() and summary.rc.exponential() are
+        no longer distributed to avoid a warning wrt S3 vs S4
+        methods dispatch.
+    o   The VGAM family functions for genetic models have been improved,
+        e.g., some basic error checking.
+        Also some changes in the names of the parameters, e.g.,
+        "q" to "pB" for ABO(), plus some switching of the order of the
+        arguments.
+
+
+BUG FIXES
+
+    o   VGAM interferes much less in regard to generic functions
+        such as predict(), fitted(), resid(), wrt other packages and
+        also including base's lm(), glm(), etc.
+    o   AIC() method for rrvglm() objects was wrong (did not account
+        for argument 'Structural.zero').
+    o   dzibinom(log=TRUE) was wrong.
+
+
+
+
+                CHANGES IN VGAM VERSION 0.7-8
+
+NEW FEATURES
+
+    o   [dpqr]benf() written for Benford's distribution.
+    o   plog() and dlog() improved.
+    o   multinomial() now has a refLevel argument to specify the
+        reference or baseline level of the factor.
+    o   binom2.or() has a new argument 'morerobust'.
+    o   Renamed arguments in mix2normal1().
+    o   DeLury() written.
+    o   [dpqr]-type functions related to the negative binomial distribution
+        have changed wrt argument names and order. 
+    o   [pq]posnegbin(), [dpqr]zapois(), [dr]zanegbin() written.
+    o   [dpqr]zinb() renamed to [dpqr]zinegbin().
+    o   lms.bcn(), lms.bcg(), lms.yjn() have zero=c(1,3) as the new default.
+        This will increase the chances of successive convergence.
+    o   Renamed arguments in lms.bcn(), lms.bcg(), lms.yjn(), e.g.,
+        link.sigma is now lsigma.
+        Some new arguments added too, e.g., llambda.
+    o   Works for R 2.5.0 and later (not 2.4.0 and later).
+        Compatible with R 2.7.2.
+    o   Contains Fortran 90 code (since 0.7-7, actually). This will
+        cause problems on older Linux machines without such a
+        compiler. Actually, removing the .f90 file(s) will not be too
+        much of a problem as there is very little F90 code in use by
+        the package at the moment.
+    o   New functions: dbinom2.rho(), rbinom2.rho(), dposnegbin().
+    o   New data: wffc, wffc.indiv, wffc.teams, wffc.nc.
+    o   Improved functions: binom2.rho(), micmen(), negbinomial(),
+        poissonff(), posnegbinomial(), zanegbinomial(),
+    o   A new form2 argument has been added to vglm().
+        VGAM family functions such as micmen() have the regressor inputted
+        using form2 now, rather than the regressor argument.
+        The resulting usage is a more elegant.
+        Fitted objects have a few more slots and formulas put in set
+        places on the object.
+    o    AIC() methods functions has been modified.
+
+
+BUG FIXES
+
+    o   The big bug whereby vgam(... ~ s(x), ... ) did not work under
+        Windows was due to a single array element that was not initialized.
+        Evidently, Linux compilers seemed to have set it to zero.
+        Funny, the code has worked for decade or so...
+    o   dposbinom() was buggy at x=0. Also it now handles size=0 and
+        prob=0 or prob=1.
+    o   pzipois() was buggy at x<0.
+    o   dbetabin.ab(log=T) was incorrect outside its support.
+    o   zipf() did not handle 0 < s < 1.
+    o   data(ruge) was faulty.
+    o   summary(rrvglmObject) failed.
+    o   persp.cao(ylim=) did not work.
+    o   plotvgam() failed when se=TRUE and which.cf was specified.
+
+
+
+
+                CHANGES IN VGAM VERSION 0.7-7
+
+NEW FEATURES
+
+    o   Labelling changes: binom2.or() uses "oratio" instead of "OR" (stands
+        for the odds ratio).
+    o   New VGAM family functions:
+        zipebcom().
+    o   New functions: dbinom2.or(), rbinom2.or().
+    o   binom2.or() has new arguments 'imu1, 'imu2' and 'ioratio' for
+        inputting optional marginal probabilities and odds ratio.
+        The third element of the score vector uses a new formula.
+    o   [dpqr]zinb() has arguments prob and munb set to NULL by default.
+    o   Compatible with R 2.7.0.
+
+
+BUG FIXES
+
+    o   gaussianff()@loglikelihood was buggy.
+    o   all(trivial.constraints(Blist)) changed to
+        all(trivial.constraints(Blist) == 1) to avoid a warning in R 2.7.0.
+        Ditto for 'all(findex)' and 'any(diff(Alphavec))'.
+    o   qtriangle(0.3, theta=0.3) used to fail.
+    o   gharmonic() handles a negative argument s.
+
+
+
+                CHANGES IN VGAM VERSION 0.7-6
+
+NEW FEATURES
+
+    o   dpolono() has a new argument 'bigx' which implements an
+        approximation. It is for handling large values of x.
+    o   vglm() and vgam() now create the response and model matrices etc.
+        in the same way as glm(). A consequence is that the response
+        does not have to be "numeric" as in lm(), e.g., a factor response
+        is now permitted.
+    o   New VGAM family functions:
+        alaplace1(), alaplace2(), alaplace3(dpqr),
+        amlbinomial(), amlexponential(), amlpoisson(), amh(),
+        lqnorm(), mbinomial(), scumulative().
+    o   Other VGAM family functions with argument names changed or added:
+        lms.yjn2().
+    o   These VGAM family functions have been improved:
+        alsqreg() [parallel option, w argument can be a vector, link function
+        for the expectiles].
+    o   The data set "aml" has been renamed "leukemia".
+    o   Previously laplace(zero=NULL), now laplace(zero=2).
+
+BUG FIXES
+
+    o   deplot() applied to a "lms.yjn2" object gave an unnecessary warning. 
+    o   In the leukemia and toxop data sets 1L is replaced by 1 and 2L by 2 etc.
+
+
+
+
+                CHANGES IN VGAM VERSION 0.7-5
+
+NEW FEATURES
+
+    o   New VGAM family functions:
+        betaff(), cardioid(dpqr), cauchy(), felix(d), fnormal1(dpqr),
+        invbinomial(), kumar(dpqr), lms.yjn2(), mix2exp(), plackett(dpr),
+        riceff(dr), skellam(dr), zinegbinomial(dpqr).
+    o   These VGAM family functions have been improved:
+        frank(), genpoisson(), hzeta(), mix2normal1(), mix2poisson(),
+        pospoisson(), studentt().
+    o   These VGAM family functions have had their default arguments changed:
+        genpoisson(), mix2normal1().
+    o   New documentation: borel.tanner(dr).
+    o   expm1() used whenever possible.
+    o   Renamed VGAM family functions: betaff() changed to beta.ab().
+    o   cauchy1() now returns the location estimates as the fitted values
+        instead of NA (for the mean).
+
+
+BUG FIXES
+
+    o   cumulative(), sratio(), cratio(), acat() had response-matrix
+        column names which got lost.
+    o   lms.yjn() failed if there was not enough data.
+
+
+
+
+                CHANGES IN VGAM VERSION 0.7-4
+
+NEW FEATURES
+
+    o   weibull() does not handle any censored observations at all.
+        The function cenweibull(), which will handle censored
+        observations, is currently being written and will use Surv()
+        as input; it should be distributed with version 0.7-5 of VGAM.
+    o   bisa() now implements full Fisher scoring. No numerical
+        integration is needed.
+    o   Certain functions from the smartpred package are no longer
+        distributed with the VGAM package. These are
+        lm, glm, predict.lm, predict.mlm, predict.glm.
+        This is done because many users have found they interfere with
+        the VGAM package in unpredictable ways.
+    o   The following VGAM family functions have improved initial values:
+        betabinomial(), cauchy1(), mccullagh89(), negbinomial(),
+        tpareto1(), zipoisson().
+    o   New family functions: alsqreg(), dexpbinomial(), laplace(),
+        poissonp(), seq2binomial(), triangle(dpqr).
+    o   VGAM family functions currently withdrawn:
+        cexpon().
+    o   A new class called "SurvS4" has been prepared. It will be used
+        later to handle VGAM family functions beginning with "cen" that
+        use Surv() as input.
+    o   log1p() used whenever possible.
+
+
+BUG FIXES
+
+    o   bisa() did not make use of ishape.
+    o   cao(..., family=gaussianff) failed. It now works, although the
+        dispersion parameter is computed using a slightly different
+        formula.
+
+
+
+                CHANGES IN VGAM VERSION 0.7-3
+
+NEW FEATURES
+
+    o   gpd() now does not delete any data internally. The user should
+        use the subset argument of vglm() and vgam() in order to select
+        any subset of a data frame.
+    o    zapoisson() has a zero argument, and this can be assigned
+        a negative value.
+    o    "partial for" is added to the ylabel of linear terms of a vgam()
+        object when it is plotted.
+    o    When a vgam() object is plotted with se=TRUE and if there are
+        linear terms then the mean of x is added to the plot (this makes
+        the standard error curves meet there).
+    o   This package has been tested (somewhat) under R 2.5.0.
+
+BUG FIXES
+
+    o   plotvgam() did not work for vgam() objects using the subset argument.
+    o   cao() objects would not show() or print(), at least under R 2.4.1.
+    o   summary(vgam.object) failed if vgam.object was a totally linear
+        model (i.e., no s() term in the formula). Now the "R" slot is
+        assigned for all vgam() objects.
+    o   preplotvgam() had a bug regarding $se.fit of an atomic pred$se.fit.
+
+
+
+                CHANGES IN VGAM VERSION 0.7-2
+
+NEW FEATURES
+
+    o   Almost all VGAM family functions now have an earg-type argument
+        to support each link function. This allows parameters specific
+        to each link to be passed in,
+        e.g., VGAMfamilyfunction(link="logoff", earg=list(offset=1))
+    o   rinv.gaussian() is new.
+    o   New VGAM family functions: morgenstern(), fgm(), gumbelIbiv(),
+        ordpoisson().
+    o   New documentation: powl(), fsqrt(). 
+
+BUG FIXES
+
+    o   zanegbinomial()@last had wrong names in misc$link.
+    o   summary(vgam.object) failed to print the anova table.
+    o   summary(cao.object) failed.
+
+
+CHANGES
+
+    o   binom2.or() has argument names changed from "lp" to "lmu" etc.
+        This is partly to make it in keeping with other VGAM family
+        functions for binary responses.
+    o   Other VGAM family functions with argument names changed: frank().
+    o   lms.bcn(), lms.bcg(), lms.yjn() arguments have changed order.
+    o   hyper() renamed to hyperg().
+    o   plotvgam() uses ylim if it is inputted.
+
+
+
+
+        CHANGES IN VGAM VERSION 0.7-1
+
+NEW FEATURES
+
+    o   VGAM family functions now require full (name) specification
+        of parameter link functions. For example, binomialff(link=probit)
+        is ok, as is binomialff(link="probit"), but binomialff(link="pr")
+        isn't.
+        VGAM family functions no longer offer a fixed set of link
+        functions but the user can invoke any, as well as write their
+        own link function.
+    o   Working residuals for vglm() objects are now the default.
+        They used to be deviance residuals but they are not defined
+        for most VGAM family functions.
+        In the future the default may become "pearson" residuals.
+        For safety, use the type argument, e.g.,
+        resid(vglmobject, type="response").
+    o   ITolerances=TRUE is now the default for qrrvglm.control(),
+        consequently, equal tolerances CQO models are fitted. The
+        rationale for this change that setting ITolerances=TRUE
+        provides the fast computational speed as well as the easiest
+        interpretation of the results. Also, rcqo() matches this by
+        having EqualTolerances=TRUE as its default.  However, having an
+        equal tolerances assumption should be checked.
+    o   New VGAM family functions: tikuv(dpqr), [dpqr]naka(), [dpr]log(),
+        [dpqr]tpareto1(), betabinomial().
+    o   VGAM family functions which have been renamed (and often improved):
+
+        New name                  Old name
+        --------                  --------
+        dirmultinomial()          dirmul()
+        negbinomial()             negbin.mu()
+        negbinomial.ab()          negbin.mn()
+        posnegbinomial()          posnegbin.mu()
+        zanegbinomial()           zanegbin.mu()
+        rposnegbin()              rposnegbin.mu()
+        gamma2()                  gamma2.ab()
+        gamma2mu()                gamma2()
+
+
+    o   New functions: lerch(), rcqo().
+    o   In the smartpred package smart.mode.is(mode.arg) now requires
+        mode.arg, if given, to be exactly one of 3 character strings.
+        Also, is.smart(object) handles object being a smart function
+        or a fitted object.
+    o   The VGAM package comes with modified lm, predict.lm, predict.glm,
+        predict.mlm, glm functions---these implement smart prediction, and
+        are current to R version 2.3.1 (2006-06-01).
+    o   The order of the linear/additive predictors for expexp()
+        have been switched.
+    o   weibull(zero=2) is the default now.
+    o   negbin.mu(), posnegbin.mu(), zanegbin.mu: these have a few added
+        arguments for further flexibility, and some arguments have changed
+        names, e.g., 'k.init' has been changed to 'ik' and 'link.mu' to
+        'lmu'.
+    o   Negative binomial random variates are now generated using
+        rnbinom() in the stats package rather than rnegbin() in the MASS
+        package.
+    o   binom2.or() and binom2.rho() have more choices for some arguments
+        such as lor and lrho.
+    o   Initial values have been improved for logff(), zipf() and zetaff().
+    o   This package should work for R 2.4.0 after additional tweaks to
+        handle changes in show().
+
+
+BUG FIXES
+
+    o   pbetabin() had a bug.
+    o   studentt() has a mean of 0 only if df > 1.
+    o   garma() failed for link="loge". It now works for binary
+        data with the "logit" link.
+    o   Internally, wz <- matrix(NA, ...) changed to
+        wz <- matrix(as.numeric(NA), ...).
+        Ditto for rep(NA, ...) to rep(as.numeric(NA), ...).
+    o   tobit() had a bug in the initialize slot.
+    o   rposnegbin.mu() now calls the MASS library function rnegbin()
+        explicitly.
+    o   gammaff() now works.
+    o   Working residuals for cao() objects were wrong.
+    o   lvplot() for cao() objects have a whichSpecies argument
+        which allows selective plotting of the species' curves.
+    o   gaussianff() did not work with rrvglm(). It now has a 
+        loglikelihood slot, and returns deviance residuals for M>1.
+
+
+CHANGES
+
+    o   gaussianff(), studentt() have the order of its arguments changed.
+    o   eta2theta(), theta2eta(): if these have a matrix "theta" then it
+        no longer calls the VGAM link function one column at a time.
+        Hence VGAM link functions must handle matrix "theta" using one
+        value of "earg" argument.
+    o   The earg argument has changed for many VGAM link functions. It
+        is now a list, with component names that are specific to each
+        link function.
+        See the online help files for the list component names.
+        Soon, every VGAM family function that allows a link function
+        will have an earg argument to match it, thus giving maximum
+        flexibility.
+
+
+
+
+    **************************************************
+    *                                                *
+    *           0.6 SERIES NEWS                      *
+    *                                                *
+    **************************************************
+
+
+
+        CHANGES IN VGAM VERSION 0.6-9
+
+
+NEW FEATURES
+
+    o   New VGAM family functions: lino(dpqr), recexp1(),
+        posnormal1(dpqr), betageometric(dpr), [dr]polono(),
+        [dpr]betabin(), gamma2mu(), bisa(dpqr), zipf(dp).
+        There is a new dirmul() (the old one is renamed to dirmul.old())
+        but it hasn't yet be completed.
+    o   Renamed VGAM family functions: beta2() changed to betaff().
+    o   Renamed VGAM functions: is.a.number() changed to is.Numeric().
+    o   The Windows crossbuild was done under R 2.3.0.
+
+BUG FIXES
+
+    o   Family functions lognormal(), lognormal3() now include the
+        1/sqrt(2*pi) constant in @loglikelihood because of its use of
+        dnorm(..., log=TRUE) and dlnorm(..., log=TRUE).
+    o   [dpqr]lognormal() withdrawn as they exist in R already.
+    o   Documentation for betaff() contained mistakes.
+    o   summary() of a betabin.ab() object used to fail.
+    o   The assign statement has been removed from some FORTRAN code.
+
+
+
+        CHANGES IN VGAM VERSION 0.6-8
+
+NEW FEATURES
+
+    o   New VGAM family functions: recnormal1(), recexp1(),
+        paretoIV(dpqr), paretoIII(dpqr), paretoII(dpqr),
+        gammahyp(), benini(dpqr).
+        However, the fitted value (mean) for benini() may be faulty.
+    o   Decommissioned VGAM family functions: gpdold(), ogev(),
+        zipoissonX().
+    o   gumbel.block() renamed to gumbel(), and gumbel() renamed to egumbel().
+    o   Argument names and defaults have changed for: gpd(), egev(), gev(),
+        ogev(), cgumbel(), egumbel(), gumbel(), and weibull().
+        Also, gpd(), gev() and egev() have some improvements done internally.
+        Also, rlplot() is new.
+    o   Several family functions have been converted to a new convention
+        whereby ilocation, iscale, ishape arguments are used, and also
+        llocation, lscale, lshape arguments for the link functions etc.
+    o   New link function: nidentity(theta) for negative-identity: -theta.
+    o   New argument "untransform" in predict() and vcov() for VGLMs.
+    o   For intercept-only models, Coef(fit) returns more user-friendly
+        labelled output.
+
+
+BUG FIXES
+
+    o   ppareto() had a bug.
+    o   gpd() had an incorrect second derivative.
+
+
+
+        CHANGES IN VGAM VERSION 0.6-7
+
+NEW FEATURES
+
+    o   New VGAM family functions: bilogistic4(dpr), frechet2(),
+        frechet3(), freund61(), frank(dpr), mccullagh89().
+    o   For cao(), df1.nl has a default of 2.5, changed from 2.0 before.
+    o   For vglm(), vgam() etc., diagonal elements of the working weight
+        matrices that are less than .Machine$double.eps^0.75 are replaced
+        by this value. The arguments checkwz and wzepsilon support this
+        feature.
+    o   More documentation on: fill() [re. the xij argument], cauchy1().
+    o   logistic2() now uses Fisher scoring.
+    o   Argument init.method changed to method.init in several family
+        functions.
+    o   Any non-smart-prediction use of smartpredenv has been changed 
+        to VGAMenv.
+
+
+BUG FIXES
+
+    o  rayleigh() was not in NAMESPACE. 
+    o  logistic1() and logistic2() had wrong first derivatives and
+       loglikelihood function.
+       logistic1() offers some choice of link function for the location
+       parameter.
+
+
+
+        CHANGES IN VGAM VERSION 0.6-6
+
+NEW FEATURES
+
+    o   New functions: zibinomial(), zibinom(dpqr), posbinom(dpqr),
+        mix2normal1(), mix2poisson(), dsnorm(), rsnorm(),
+        cexpon(), cgumbel(), cnormal1(), hyper().
+    o   New generic functions: is.bell() works for RR-VGLMs, QRR-VGLMs
+        and RR-VGAMs (CLO, CQO and CAO, respectively).
+    o   normal1() has a new (first) argument: lmean for the mean.
+    o   Documentation for skewnormal1() and snorm(dr).
+
+
+BUG FIXES
+
+    o   tobit() now implements Fisher scoring properly.
+    o   Coef.vlm() needed to test for trivial constraints.
+    o   skewnorm1() had a bug in it. It has been fixed and renamed to
+        skewnormal1().
+    o   cao() had a problem with the variable "usethiseta" when it had
+        possible NAs.
+    o   An appropriate error message is given if residuals=TRUE in the
+        call to @loglikelihood, for all VGAM family functions.
+    o   Two unneeded lines in rgam.f have been removed.
+
+
+
+        CHANGES IN VGAM VERSION 0.6-5
+
+NEW FEATURES
+
+    o   New functions: guplot(), meplot(), ggamma(dpqr), fff(),
+        vonmises(), lgamma3ff, lgamma(dpqr), prentice74, tobit, 
+        zipoisson(dpqr), [dpqr]pospois(), [dpqr]laplace but there is 
+        no laplace().
+    o   cqo() has been largely rewritten. It now sports a new algorithm
+        for ITolerances=TRUE. It can handle large data sets (e.g., 1000
+        sites with 100 species). Compared to other cqo() options, it is
+        the fastest. There are a few things to learn though to take full
+        advantage of the new algorithm, e.g., centering the variables.
+    o   Windows version is cross built with R 2.2.0. The Linux version
+        has been tested with R 2.2.0.
+    o   cao() has been largely rewritten. It now should not hang in the
+        the windows cross build version.
+    o   .Init.Poisson.CQO() has been renamed .Init.Poisson.QO(), and also
+        improved (however, it uses more memory by default).
+    o   Modelling functions such as vglm(), vgam() and cao() have 
+        qr.arg=FALSE now. This means object sizes can be a lot smaller.
+    o   The functions positive.poisson(), positive.binomial() etc. have
+        been renamed pospoisson(), posbinomial() etc.
+    o   The functions [dpqr]gpd now have a location=0 argument.
+    o   Some VGAM family functions will be adapted later to use the 
+        BFGS quasi-Newton update for their working weight matrices.
+    o   The link function logoff() now works, for constant offsets.
+        Link functions had the argument "extra"; now called "earg"
+        to avoid confusion with the argument "extra" used in vglm() etc.
+        Also, elogit() is new, which allows a parameter to lie between
+        two values (A,B), say.
+
+
+BUG FIXES
+
+    o   plotvgam() was incorrect if one of the terms (but not the first)
+        was "x" or a function of "x" such as bs(x).
+    o   smart.expression now handles multiple 'arguments' by choosing 
+        the first, which is the smart function name.
+    o   lv(rrvglm.object) failed.
+
+
+
+        CHANGES IN VGAM VERSION 0.6-4
+
+NEW FEATURES
+
+    o   New family functions: betabin.ab(), betaprime(), dcnormal1(),
+        erlang(), expexp(), inv.gaussianff(), maxwell(), mckaygamma2(),
+        nakagami(), pareto1(), rayleigh(), wald().
+        Of these, Pareto, Rayleigh and Maxwell have random number
+        generation etc.
+    o   If criter="coef" and trace=TRUE, then the number of 
+        decimal places used to print the estimated coefficients at
+        each iteration is proportional to the control constant
+        epsilon.
+    o   tanl() has been named to cauchit(), and appropriate
+        family functions reflect this change, i.e.,
+        link="cauchit" instead of  link="tanl".
+    o   size.binomial() has been improved.
+    o   Documentation for gamma1(), gamma2().
+
+
+BUG FIXES
+
+    o   The documentation for the reverse argument in cumulative(),
+        cratio(), etc. was incorrect.
+    o   vcov() didn't work on the windows version.
+    o   cao() still hangs under the windows version, so hopefully
+        this bug will be fixed soon!
+
+
+
+
+        CHANGES IN VGAM VERSION 0.6-3
+
+NEW FEATURES
+
+    o   Built with R 2.1.0 for the .zip file (Windows version) and 
+        deposited in the right directory at www.stat.auckland.ac.nz.
+    o   More documentation, e.g., fitted(), yeo.johnson(), 
+        dirmul().
+    o   zeta() and zetaff() have been improved and/or corrected.
+    o   The family functions binomial, poisson, quasibinomial,
+        quasipoisson, gaussian, inverse.gaussian, Gamma 
+        have been withdrawn because of inteference with glm().
+
+
+
+        CHANGES IN VGAM VERSION 0.6-2
+
+NEW FEATURES
+
+    o   model.frame() and model.matrix() are roughly working for
+        objects that inherit from "vlm"s, e.g., "vglm" objects.
+        Both of these methods functions accept a "data"
+        argument etc.
+        Also, for these, smart prediction works.
+    o   A methods function for the generic function weights() has
+        been written for VGLM objects. It returns
+        either the prior or working weights.
+
+
+BUG FIXES
+
+    o   The Crow1positive argument in cao() did not function correctly. 
+    o   The family functions dagum, fisk, lomax, invlomax, paralogistic,
+        invparalogistic, lognormal were not exported in the NAMESPACE
+        file.
+    o   Functions in gaut.c and mux.c used "long" to represent integers.
+        In R, these should be "int". Although these are equivalent on
+        32-bit machines, they differ on 64-bit machines and crash. 
+        The files are now renamed to gautr.c and muxr.c in R.
+    o   summary(cao.object) failed.
+
+
+
+        CHANGES IN VGAM VERSION 0.6-1
+
+NEW FEATURES
+
+    o   New functions: cao() for "constrained additive ordination", 
+        and uqo() for "unconstrained quadratic ordination".
+        Both of these are unfinished but will hopefully be
+        completed in the forseeable future. 
+    o   The function cgo() has been renamed to cqo(). Ouch!
+        CQO stands for "constrained quadratic ordination", and is 
+        better than the old name cgo(), for 
+        canonical Gaussian ordination.
+    o   The inverse() link function has been renamed to reciprocal().
+    o   More documentation: loglinb2() and loglinb3().
+    o   zipbipp() renamed to zapoisson(), where "za" stand for
+        "zero-altered". This is more in line with the literature.
+        New families: zanegbin.mu, positive.negbin.mu.
+        New random variates: rposnegbin.mu, rpospois.
+    o   negbin.mu() works now for cgo(). The subsequent methods
+        functions have been adapted to work on it too.
+        However, negbin.mu() is not recommended because maximum
+        likelihood estimation of the index parameter is fraught
+        numerically. It is better to use quasipoissonff().
+    o   cgo() now uses the function .Init.Poisson.CGO() to obtain
+        initial values for the canonical coefficients, C.
+        The argument Use.Init.Poisson.CGO in qrrvglm.control()
+        now controls this feature.
+    o   Lazy loading has been enabled for the VGAM package.
+    o   Name spaces has been introduced into the VGAM package.
+        The consequencies of this might be far reaching for
+        code heavily based on the internals of the VGAM package.
+    o   The application of name spaces means "ff" can be dropped
+        from certain family functions. In particular, poisson() can
+        be used instead of poissonff(), and binomial() instead
+        of binomialff().  Ditto for quasipoissonff() and
+        quasibinomialff().
+    o   names.of() changed to namesof(). Many other function names
+        have been changed, particularly those of the S3 classes
+        such as coef. something, e.g., coef.vlm to coefvlm.
+        In general, S3 methods functions such as print.summary.vlm have
+        the first "." deleted, but classes such as "summary.vlm" retain the 
+        ".", and the function is printsummary.vlm.
+
+BUG FIXES
+
+    o   Some documentation regarding the negative binomial
+        distribution was wrong.
+    o   The digamma function in FORTRAN was buggy.
+    o   gumbel.block() now handles a vector response (equivalently,
+        a one column matrix) and the deviance has been decommissioned.
+        Instead, the log-likelihood is computed. 
+
+
+
+
+    **************************************************
+    *                                                *
+    *           0.5 SERIES NEWS                      *
+    *                                                *
+    **************************************************
+
+
+
+        CHANGES IN VGAM VERSION 0.5-24
+
+NEW FEATURES
+
+    o   zipbipp() and zipoissonX() are new alternatives to yip88(). 
+        They fit a zero-inflated Poisson distribution.
+        Both can handle covariates for both parameters (p0 or 
+        phi, and lambda.)
+        zipbipp() is recommended over the others. 
+        zipoissonX() is experimental at this stage
+        and should be used with caution.
+        rpospois() is new.
+    o   More documentation: rhobit and binom2.rho.
+    o   binom2.or() now has lp1 and lp2 arguments, which allow 
+        a different link function for each of the two marginal
+        probabilities. 
+    o   bratt() is a new family function. It fits the Bradley Terry
+        model with ties.
+    o   flush.console() is used if it exists. This will make
+        Windows version more nicer for large data sets and when
+        trace=TRUE is used. 
+    o   wweights() extracts the working weights of an object.
+        Used to be called vweights().
+
+
+
+
+        CHANGES IN VGAM VERSION 0.5-23
+
+
+NEW FEATURES
+
+    o    The package works under the latest version, viz. 2.0.0.
+         There are fewer warning messages when checking :)
+    o    persp() for CGO objects now handles Rank=1 models.
+
+
+
+        CHANGES IN VGAM VERSION 0.5-22
+
+BUG FIXES
+
+    o   plot.vgam(..., overlay=TRUE, which.cf=1:2) was incorrect. 
+
+NEW FEATURES
+
+    o   demo files now are avaible for VGAM. These include lmsqreg,
+        distributions, and cgo. More will be added later.
+
+
+
+        CHANGES IN VGAM VERSION 0.5-21
+
+BUG FIXES
+
+    o   .Rd files adapted to reflect new changes in the library names.
+    o   persp.qrrvglm() argument whichSpecies was faulty.
+    o   gpd()@inverse returned erroneous centiles.
+    o   Coef(cgo(..., FastAlgorithm=TRUE)) produced wrong results.
+
+NEW FEATURES
+
+    o   cgo(..., FastAlgorithm=TRUE) has been fined-tuned to give
+        greater speed and accuracy.
+    o   lms.yjn() uses FORTRAN code to implement the Gauss-Legendre
+        algorithm. This results in greater accuracy.
+    o   More documentation, especially for family functions for
+        extreme values modelling.
+
+
+
+        CHANGES IN VGAM VERSION 0.5-20
+
+BUG FIXES
+
+    o   vglm(y ~ x, binomialff(link=tanl)) used to fail.
+    o   The CHECK command failed previously, but now it only
+        gives 5 warnings.
+
+NEW FEATURES
+
+    o   persp.qrrvglm() has been written to apply persp() to
+        a rank-2 CGO model.
+    o   cgo(..., FastAlgorithm=TRUE) now has a logical argument
+        GradientFunction, which if TRUE (default), computes the
+        derivatives by using finite-difference approximations.
+        The default will cause the speed to generally increase.
+
+
+
+        CHANGES IN VGAM VERSION 0.5-19
+
+BUG FIXES
+
+    o   garma() did coerce the model matrix into the correct class
+    o   fisherz() could not work out the inverse.
+
+NEW FEATURES
+
+    o   trplot() is a new generic function, and for objects of
+        class "qrrvglm" (a cgo() object), it produces a trajectory plot
+        for species. 
+    o   vcov.qrrvglm() now computes standard errors and returns the 
+        variance-covariance matrix for rank-1 QRR-VGLMs.
+    o   A new fast algorithm is implemented for cgo(..., FastAlgorithm=TRUE)
+        which only works under windows. It is a new undocumented algorithm.
+    o   New family functions: lognormal(), lognormal3(), weibull().
+    o   New family functions: genbetaII(), betaII(), sinmad(), dagum(), 
+        lomax(), invlomax(), fisk(), invparalogistic(), paralogistic().
+        Additionally, d*, r* p* and q* forms of the
+        density/random-generation etc.  functions for all of these
+        except for betaII and genbetaII.
+    o   New link function for (0,1) parameters: tanl() for tan link.
+        It has a heavier tail and corresponds to a Cauchy distribution
+        (cf. probit for normal).
+    o   New family function: brat() for the Bradley Terry model 
+        (intercept model only).
+
+
+
+        CHANGES IN VGAM VERSION 0.5-18
+
+NEW FEATURES
+
+    o   I've changed deplot.lmscreg() so that the "at" argument is now
+        "y.arg", and the density is returned with name "density" instead
+        of "y". That is, "at" is now "y", and "y" is now "density".
+    o   lvplot.rrvglm() and biplot.rrvglm() have been merged and are now
+        equivalent.
+
+
+
+        CHANGES IN VGAM VERSION 0.5-17
+
+BUG FIXES
+
+    o   Bestof argument in cgo() and rrvglm() was faulty.
+    o   Bug in plot.vgam(type.resid) fixed.
+
+NEW FEATURES
+
+    o   Updated to work under R 1.8.1 
+    o   logLik() and AIC() methods functions supported for many VGAM objects.
+    o   lms.bcn.control(), lms.bcg.control(), lms.yjn.control() now 
+        have trace=TRUE because monitoring LMS quantile regression models
+        is a good idea.
+    o   lms.bcn(), lms.bcg(), lms.yjn() now improved.
+
+
+
+        CHANGES IN VGAM VERSION 0.5-16
+
+BUG FIXES
+
+    o   biplot.rrvglm() had a internal bug with @C.
+    o   Runs under R 1.8.0 now, having a fix with "qr" slot.
+    o   etastart, coefstart, mustart arguments were not functional in vgam().
+    o   vchol() did not replace the correct elements; sometimes the index
+        was out of subscript range.
+    o   residuals.vlm() tried to evaluate a deviance slot in a "vglmff" object
+        even when it was empty.
+    o   Documentation links to functions in other packages now work.
+
+NEW FEATURES
+
+    o   lvplot.qrrvglm() has been renamed biplot.qrrvglm(). 
+        Argument Equal.tolerances changed to EqualTolerances.
+        Argument Circular changed to ITolerances.
+        rrvglm.control() now split into qrrvglm.control() and itself.
+    o   cgo() now performs canonical Gaussian ordination.
+
+
+
+        CHANGES IN VGAM VERSION 0.5-15
+
+BUG FIXES
+
+    o   Coef.qrrvglm() failed wrt Equal.tolerances and Circular when
+        Rank>2.
+
+NEW FEATURES
+
+    o   gco() is now an easier interface for fitting Gaussian canonical
+        ordination models. gco(...) is essentially rrvglm(..., Quadratic=TRUE).
+    o   Documentation for deplot.lmscreg(), qtplot.lmscreg(), cdf.lmscreg()
+        and related functions. Also for positive.poisson(),
+        positive.binomial() and yip88(). 
+    o   lvplot.qrrvglm() improved to handle non-diagonal tolerance matrices,
+        and a new Rotate option is available for QRR-VGLMs.
+    o   By default, QRR-VGLMs now have the constraint that the latent
+        variables are uncorrelated and have unit variances, i.e., 
+        their variance-covariance matrix is diag(Rank).
+        Also, the Crow1positive argument allows ordinations to be reflected
+        across axes.
+
+
+
+        CHANGES IN VGAM VERSION 0.5-14
+
+BUG FIXES
+
+    o   vgam() with s() terms and subset= used to give a bug because the
+        attributes of s() were lost.
+    o   summary() of a gaussianff was faulty because control.gaussianff() 
+        was called gaussianff.control().
+
+NEW FEATURES
+
+    o   install.packages("VGAM", CRAN="http://www.stat.auckland.ac.nz/~yee") 
+        now works for PC and Linux/Unix, i.e., the distribution of the
+        VGAM package allows for this type of download.
+    o   poissonff(), quasipoissonff(), binomialff() and 
+        quasibinomialff() now handle multiple dispersion parameters when
+        mv=TRUE and onedpar=FALSE.
+    o   Generic function predictx(), with methods function for "qrrvglm"
+        objects. This solves (with limited functionality) the calibration
+        problem.
+    o   predict.qrrvglm() and predict.rrvglm() written (but don't work 100%)
+    o   Coef.rrvglm() now returns an S4 object, which can be printed nicely. 
+    o   summary.qrrvglm() has been improved.
+    o   Documentation for poissonff(), quasipoissonff(), binomialff() and 
+        quasibinomialff(). 
+
+
+
+        CHANGES IN VGAM VERSION 0.5-13
+
+BUG FIXES
+
+    o   Code with T and F now use TRUE and FALSE. 
+
+NEW FEATURES
+
+    o    Documentation for lms.bcn(), lms.bcg(), lms.yjn(), and bmi.
+         Additionally, the overall documentation has been improved
+         throughout.
+    o    print.Coef.qrrvglm prints the contents of Coef(qrrvglm.object) 
+         in a nicer format. It uses S4 features.
+
+
+        CHANGES IN VGAM VERSION 0.5-12
+
+BUG FIXES
+
+    o   The package now works under R 1.7.1. This includes the smart 
+        prediction library. 
+    o   dirichlet(), skewnorm1(), geometric(), gamma2() and erlang()
+        had a bug that has been fixed. 
+
+NEW FEATURES
+
+    o    documentation for beta2(), and dirichlet().
+    o    Easier installation; use something like 
+        "R CMD INSTALL -l ./myRlibs VGAM_0.5-12.tar.gz"
+         for a local library. 
+
+
+        CHANGES IN VGAM VERSION 0.5-11
+
+BUG FIXES
+
+    o   The code has been upgraded to work under R 1.7.0 because
+        of the calls to LAPACK and object oriented features. 
+
+NEW FEATURES
+
+    o   levy() added, plus grc() documentation.
+    o   constraints added to binomialff() and poissonff() since 
+        they both handle multivariate responses. 
+
+
+        CHANGES IN VGAM VERSION 0.5-10
+
+BUG FIXES
+
+    o   Many univariate family functions had a faulty loglikelihood slot.
+    o   negbin.mu() was faulty causing very slow convergence.
+    o   Coef.vglm() had a bug due to "fit" rather than "object" 
+
+NEW FEATURES
+
+    o   logff() added.
+    o   The undocumented backchat facility now works for Splus 6.x.
+        This should increase the efficiency of vglm() in particular.
+        Thanks to Insightful and Dr J. Chambers for helping to get it
+        going under the S4 engine. 
+
+
+
+        CHANGES IN VGAM VERSION 0.5-9
+
+BUG FIXES
+
+    o   binomialff() had a bug in @weight.
+    o   binomialff(mv=T) used to fail. 
+    o   gev(), ogev() and egev() had @loglikelihood that was faulty. 
+
+NEW FEATURES
+
+    o    .Rd documentation included for vglm(), vgam(), rrvglm(), and
+         associated control and class functions, plus smart prediction.
+
+
+
+        CHANGES IN VGAM VERSION 0.5-8
+
+NEW FEATURES
+
+    o    rrvglm() now has a Quadratic argument to implement the class of 
+         Quadratic Reduced-rank VGLMs, which gives maximum likelihood
+         solutions to Gaussian canonical ordination problems.
+         Documentation is in rrvglm.pdf 
+
+
+
+        CHANGES IN VGAM VERSION 0.5-7
+
+NEW FEATURES
+
+    o    vglm() now has a xij argument which implements eta-specific covariates. 
+         Documentation is supplied on the VGAM website. 
+    o    grc() has been written for Goodman's RC association model for a 
+         contingency table. Documentation is in rrvglm.pdf 
+
+
+

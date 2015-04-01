@@ -1,0 +1,518 @@
+AA.Aa.aa                The AA-Aa-aa Blood Group System
+AB.Ab.aB.ab             The AB-Ab-aB-ab Blood Group System
+AB.Ab.aB.ab2            The AB-Ab-aB-ab2 Blood Group System
+ABO                     The ABO Blood Group System
+AICvlm                  Akaike's Information Criterion
+Amh                     Ali-Mikhail-Haq Bivariate Distribution
+BICvlm                  Bayesian Information Criterion
+Benford                 Benford's Distribution
+Benini                  The Benini Distribution
+Betabinom               The Beta-Binomial Distribution
+Betageom                The Beta-Geometric Distribution
+Betanorm                The Beta-Normal Distribution
+Binom2.or               Bivariate Binary Regression with an Odds Ratio
+Binom2.rho              Bivariate Probit Model
+Binorm                  Bivariate normal distribution cumulative
+                        distribution function
+Binormcop               Gaussian Copula (Bivariate) Distribution
+Bisa                    The Birnbaum-Saunders Distribution
+Bistudentt              Bivariate Student-t distribution cumulative
+                        distribution function
+Bort                    The Borel-Tanner Distribution
+Brat                    Inputting Data to fit a Bradley Terry Model
+Card                    Cardioid Distribution
+Coef                    Computes Model Coefficients and Quantities
+Coef.qrrvglm            Returns Important Matrices etc. of a QO Object
+Coef.qrrvglm-class      Class "Coef.qrrvglm"
+Coef.rrvglm             Returns Important Matrices etc. of a RR-VGLM
+                        Object
+Coef.rrvglm-class       Class "Coef.rrvglm"
+Coef.vlm                Extract Model Coefficients for VLM Objects
+CommonVGAMffArguments   Common VGAM family function Arguments
+Dagum                   The Dagum Distribution
+Expectiles-Exponential
+                        Expectiles of the Exponential Distribution
+Expectiles-Koenker      Expectiles/Quantiles of the Koenker
+                        Distribution
+Expectiles-Normal       Expectiles of the Normal Distribution
+Expectiles-Uniform      Expectiles of the Uniform Distribution
+Felix                   The Felix Distribution
+Fgm                     Farlie-Gumbel-Morgenstern's Bivariate
+                        Distribution
+Fisk                    The Fisk Distribution
+Foldnorm                The Folded-Normal Distribution
+Frank                   Frank's Bivariate Distribution
+Frechet                 The Frechet Distribution
+G1G2G3                  The G1G2G3 Blood Group System
+Gompertz                The Gompertz Distribution
+Gumbel-II               The Gumbel-II Distribution
+Huggins89.t1            Table 1 of Huggins (1989)
+Hzeta                   Haight's Zeta Distribution
+Inv.gaussian            The Inverse Gaussian Distribution
+Invlomax                The Inverse Lomax Distribution
+Invparalogistic         The Inverse Paralogistic Distribution
+Kumar                   The Kumaraswamy Distribution
+Lindley                 The Lindley Distribution
+Links                   Link functions for VGLM/VGAM/etc. families
+Lino                    The Generalized Beta Distribution (Libby and
+                        Novick, 1982)
+Log                     Logarithmic Distribution
+Lomax                   The Lomax Distribution
+MNSs                    The MNSs Blood Group System
+Makeham                 The Makeham Distribution
+Max                     Maxima
+Maxwell                 The Maxwell Distribution
+Nakagami                Nakagami Distribution
+Opt                     Maxima
+Paralogistic            The Paralogistic Distribution
+Pareto                  The Pareto Distribution
+ParetoIV                The Pareto(IV/III/II) Distributions
+Perks                   The Perks Distribution
+Plackett                Plackett's Bivariate Distribution
+PoissonPoints           Poisson Points Distribution
+Polono                  The Poisson Lognormal Distribution
+Posbinom                Positive-Binomial Distribution
+Posgeom                 Positive-geometric Distribution
+Posnegbin               Positive-Negative Binomial Distribution
+Posnorm                 The Positive-Normal Distribution
+Pospois                 Positive-Poisson Distribution
+Qvar                    Quasi-variances Preprocessing Function
+Rayleigh                The Rayleigh Distribution
+Rcim                    Mark the Baseline of Row and Column on a Matrix
+                        data
+Rice                    The Rice Distribution
+SUR                     Seemingly Unrelated Regressions
+Select                  Select variables for a formula response or the
+                        RHS of a formula
+Sinmad                  The Singh-Maddala Distribution
+Skellam                 The Skellam Distribution
+Slash                   Slash Distribution
+SurvS4                  Create a Survival Object
+SurvS4-class            Class "SurvS4"
+Tikuv                   A Short-tailed Symmetric Distribution
+Tobit                   The Tobit Distribution
+Tol                     Tolerances
+Triangle                The Triangle Distribution
+Truncpareto             The Truncated Pareto Distribution
+V1                      V1 Flying-Bombs Hits in London
+VGAM-package            Vector Generalized Linear and Additive Models
+Yules                   Yule-Simon Distribution
+Zabinom                 Zero-Altered Binomial Distribution
+Zageom                  Zero-Altered Geometric Distribution
+Zanegbin                Zero-Altered Negative Binomial Distribution
+Zapois                  Zero-Altered Poisson Distribution
+Zeta                    The Zeta Distribution
+Zibinom                 Zero-Inflated Binomial Distribution
+Zigeom                  Zero-Inflated Geometric Distribution
+Zinegbin                Zero-Inflated Negative Binomial Distribution
+Zipf                    The Zipf Distribution
+Zipois                  Zero-Inflated Poisson Distribution
+acat                    Ordinal Regression with Adjacent Categories
+                        Probabilities
+alaplace1               Asymmetric Laplace Distribution Family
+                        Functions
+amh                     Ali-Mikhail-Haq Distribution Family Function
+amlbinomial             Binomial Logistic Regression by Asymmetric
+                        Maximum Likelihood Estimation
+amlexponential          Exponential Regression by Asymmetric Maximum
+                        Likelihood Estimation
+amlnormal               Asymmetric Least Squares Quantile Regression
+amlpoisson              Poisson Regression by Asymmetric Maximum
+                        Likelihood Estimation
+auuc                    Auckland University Undergraduate Counts Data
+aux.posbernoulli.t      Auxiliary Function for the Positive Bernoulli
+                        Family Function with Time Effects
+backPain                Data on Back Pain Prognosis, from Anderson
+                        (1984)
+beggs                   Bacon and Eggs Data
+benini                  Benini Distribution Family Function
+beta.ab                 The Two-parameter Beta Distribution Family
+                        Function
+betaII                  Beta Distribution of the Second Kind
+betabinomial            Beta-binomial Distribution Family Function
+betabinomial.ab         Beta-binomial Distribution Family Function
+betaff                  The Two-parameter Beta Distribution Family
+                        Function
+betageometric           Beta-geometric Distribution Family Function
+betaprime               The Beta-Prime Distribution
+biclaytoncop            Clayton Copula (Bivariate) Family Function
+bifrankcop              Frank's Bivariate Distribution Family Function
+bigamma.mckay           Bivariate Gamma: McKay's Distribution
+bigumbelI               Gumbel's Type I Bivariate Distribution Family
+                        Function
+bilogis4                Bivariate Logistic Distribution
+bilogistic4             Bivariate Logistic Distribution Family Function
+binom2.or               Bivariate Binary Regression with an Odds Ratio
+                        (Family Function)
+binom2.rho              Bivariate Probit Model (Family Function)
+binomialff              Binomial Family Function
+binormal                Bivariate normal distribution family function
+binormalcop             Gaussian Copula (Bivariate) Family Function
+biplot,rrvglm-method    Biplot of Constrained Regression Models
+bisa                    Birnbaum-Saunders Distribution Family Function
+bistudentt              Bivariate Student-t Family Function
+bmi.nz                  Body Mass Index of New Zealand Adults Data
+borel.tanner            Borel-Tanner Distribution Family Function
+brat                    Bradley Terry Model
+bratt                   Bradley Terry Model With Ties
+calibrate               Model Calibrations
+calibrate,rrvglm-method
+                        Calibration for Constrained Regression Models
+calibrate.qrrvglm       Calibration for CQO and CAO models
+calibrate.qrrvglm.control
+                        Control function for CQO/CAO calibration
+cao                     Fitting Constrained Additive Ordination (CAO)
+cao.control             Control Function for RR-VGAMs (CAO)
+cardioid                Cardioid Distribution Family Function
+cauchit                 Cauchit Link Function
+cauchy                  Cauchy Distribution Family Function
+cdf.lmscreg             Cumulative Distribution Function for LMS
+                        Quantile Regression
+cennormal               Censored Normal Distribution
+cenpoisson              Censored Poisson Family Function
+cfibrosis               Cystic Fibrosis Data
+cgo                     Redirects the user to cqo
+cgumbel                 Censored Gumbel Distribution
+chest.nz                Chest Pain in NZ Adults Data
+chinese.nz              Chinese Population in New Zealand 1867-2001
+                        Data
+chisq                   Chi-squared Distribution
+clo                     Redirects the user to rrvglm
+cloglog                 Complementary Log-log Link Function
+coalminers              Breathlessness and Wheeze Amongst Coalminers
+                        Data
+coefvlm                 Extract Model Coefficients
+concoef                 Extract Model Constrained/Canonical
+                        Coefficients
+concoef-method          Constrained (Canonical) Coefficients
+constraints             Constraint Matrices
+corbet                  Corbet's Butterfly Data
+cqo                     Fitting Constrained Quadratic Ordination (CQO)
+crashi                  Crashes on New Zealand Roads in 2009
+cratio                  Ordinal Regression with Continuation Ratios
+cumulative              Ordinal Regression with Cumulative
+                        Probabilities
+dagum                   Dagum Distribution Family Function
+dalap                   The Laplace Distribution
+dbiclaytoncop           Clayton Copula (Bivariate) Distribution
+deermice                Captures of Peromyscus maniculatus, also known
+                        as deer mice.
+deplot.lmscreg          Density Plot for LMS Quantile Regression
+depvar                  Response variable extracted
+df.residual             Residual Degrees-of-Freedom
+dgumbel                 The Gumbel Distribution
+dhuber                  Huber's least favourable distribution
+dirichlet               Fitting a Dirichlet Distribution
+dirmul.old              Fitting a Dirichlet-Multinomial Distribution
+dirmultinomial          Fitting a Dirichlet-Multinomial Distribution
+dlaplace                The Laplace Distribution
+dlogF                   log F Distribution
+dloglap                 The Log-Laplace Distribution
+double.cennormal        Univariate Normal Distribution with Double
+                        Censoring
+double.expbinomial      Double Exponential Binomial Distribution Family
+                        Function
+dsimplex                Simplex Distribution
+enzyme                  Enzyme Data
+erf                     Error Function
+erlang                  Erlang Distribution
+expexp                  Exponentiated Exponential Distribution
+expexp1                 Exponentiated Exponential Distribution
+expgeom                 The Exponential Geometric Distribution
+expgeometric            Exponential Geometric Distribution Family
+                        Function
+expint                  The Exponential Integral and Variants
+explink                 Exponential Link Function
+explog                  The Exponential Logarithmic Distribution
+explogff                Exponential Logarithmic Distribution Family
+                        Function
+exponential             Exponential Distribution
+exppois                 The Exponential Poisson Distribution
+exppoisson              Exponential Poisson Distribution Family
+                        Function
+felix                   Felix Distribution Family Function
+fff                     F Distribution Family Function
+fgm                     Farlie-Gumbel-Morgenstern's Bivariate
+                        Distribution Family Function
+fill                    Creates a Matrix of Appropriate Dimension
+finney44                Toxicity trial for insects
+fisherz                 Fisher's Z Link Function
+fisk                    Fisk Distribution family function
+fittedvlm               Fitted Values of a VLM object
+foldnormal              Folded Normal Distribution Family Function
+frechet2                Frechet Distribution Family Function
+freund61                Freund's (1961) Bivariate Extension of the
+                        Exponential Distribution
+fsqrt                   Folded Square Root Link Function
+gamma1                  1-parameter Gamma Distribution
+gamma2                  2-parameter Gamma Distribution
+gamma2.ab               2-parameter Gamma Distribution
+gammahyp                Gamma Hyperbola Bivariate Distribution
+garma                   GARMA (Generalized Autoregressive
+                        Moving-Average) Models
+gaussianff              Gaussian (normal) Family Function
+genbetaII               Generalized Beta Distribution of the Second
+                        Kind
+gengamma                Generalized Gamma distribution family function
+gengammaUC              The Generalized Gamma Distribution
+genpoisson              Generalized Poisson distribution
+genray                  The Generalized Rayleigh Distribution
+genrayleigh             Generalized Rayleigh Distribution Family
+                        Function
+geometric               Geometric (Truncated and Untruncated)
+                        Distributions
+get.smart               Retrieve One Component of ".smart.prediction"
+get.smart.prediction    Retrieves ".smart.prediction"
+gev                     Generalized Extreme Value Distribution Family
+                        Function
+gevUC                   The Generalized Extreme Value Distribution
+gew                     General Electric and Westinghouse Data
+golf                    Gamma-Ordinal Link Function
+gompertz                Gompertz Distribution Family Function
+gpd                     Generalized Pareto Distribution Family Function
+gpdUC                   The Generalized Pareto Distribution
+grain.us                Grain Prices Data in USA
+grc                     Row-Column Interaction Models including
+                        Goodman's RC Association Model and
+                        Unconstrained Quadratic Ordination
+gumbel                  Gumbel Distribution Family Function
+gumbelII                Gumbel-II Distribution Family Function
+guplot                  Gumbel Plot
+hatvalues               Hat Values and Regression Deletion Diagnostics
+hormone                 Hormone Assay Data
+hspider                 Hunting Spider Data
+huber2                  Huber's least favourable distribution family
+                        function
+hunua                   Hunua Ranges Data
+hyperg                  Hypergeometric Family Function
+hypersecant             Hyperbolic Secant Distribution Family Function
+hzeta                   Haight's Zeta Family Function
+iam                     Index from Array to Matrix
+identitylink            Identity Link Function
+inv.gaussianff          Inverse Gaussian Distribution Family Function
+invbinomial             Inverse Binomial Distribution Family Function
+invlomax                Inverse Lomax Distribution Family Function
+invparalogistic         Inverse Paralogistic Distribution Family
+                        Function
+is.parallel             Parallelism Constraint Matrices
+is.smart                Test For a Smart Object
+is.zero                 Zero Constraint Matrices
+kendall.tau             Kendall's Tau Statistic
+koenker                 Koenker's Distribution Family Function
+kumar                   Kumaraswamy Distribution Family Function
+lakeO                   Annual catches on Lake Otamangakau from October
+                        1974 to October 1989
+lambertW                The Lambert W function
+laplace                 Laplace Distribution
+latvar                  Latent Variables
+leipnik                 Leipnik Distribution Family Function
+lerch                   Lerch Phi Function
+leukemia                Acute Myelogenous Leukemia Survival Data
+levy                    Levy Distribution Family Function
+lgammaUC                The Log-Gamma Distribution
+lgammaff                Log-gamma Distribution Family Function
+lindley                 1-parameter Gamma Distribution
+lino                    Generalized Beta Distribution Family Function
+lirat                   Low-iron Rat Teratology Data
+lms.bcg                 LMS Quantile Regression with a Box-Cox
+                        transformation to a Gamma Distribution
+lms.bcn                 LMS Quantile Regression with a Box-Cox
+                        Transformation to Normality
+lms.yjn                 LMS Quantile Regression with a Yeo-Johnson
+                        Transformation to Normality
+log1pexp                Logarithms with an Unit Offset and Exponential
+                        Term
+logF                    Natural Exponential Family Generalized
+                        Hyperbolic Secant Distribution Family Function
+logLik.vlm              Extract Log-likelihood for VGLMs/VGAMs/etc.
+logc                    Complementary-log Link Function
+loge                    Log link function, and variants
+logff                   Logarithmic Distribution
+logistic                Logistic Distribution Family Function
+logit                   Logit Link Function
+loglaplace1             Log-Laplace and Logit-Laplace Distribution
+                        Family Functions
+loglinb2                Loglinear Model for Two Binary Responses
+loglinb3                Loglinear Model for Three Binary Responses
+loglog                  Log-log Link Function
+lognormal               Lognormal Distribution
+logoff                  Log link function with an offset
+lomax                   Lomax Distribution Family Function
+lqnorm                  Minimizing the L-q norm Family Function
+lrtest                  Likelihood Ratio Test of Nested Models
+lvplot                  Latent Variable Plot
+lvplot.qrrvglm          Latent Variable Plot for QO models
+lvplot.rrvglm           Latent Variable Plot for RR-VGLMs
+machinists              Machinists Accidents
+makeham                 Makeham Distribution Family Function
+margeff                 Marginal effects for the multinomial logit and
+                        cumulative models
+marital.nz              New Zealand Marital Data.
+matched.binomial        The Matched Binomial Distribution Family
+                        Function
+maxwell                 Maxwell Distribution Family Function
+mccullagh89             McCullagh (1989) Distribution Family Function
+meplot                  Mean Excess Plot
+micmen                  Michaelis-Menten Model
+mix2exp                 Mixture of Two Exponential Distributions
+mix2normal              Mixture of Two Univariate Normal Distributions
+mix2poisson             Mixture of Two Poisson Distributions
+mlogit                  Multi-logit Link Function
+mmt                     mmt daily maximum temperatures
+model.framevlm          Construct the Model Frame of a VLM Object
+model.matrixvlm         Construct the Design Matrix of a VLM Object
+moffset                 Matrix Offset
+morgenstern             Morgenstern's Bivariate Distribution Family
+                        Function
+multinomial             Multinomial Logit Model
+nakagami                Nakagami Distribution Family Function
+nbcanlink               Negative binomial canonical link function
+nbolf                   Negative Binomial-Ordinal Link Function
+negbinomial             Negative Binomial Distribution Family Function
+negbinomial.size        Negative Binomial Distribution Family Function
+                        With Known Size
+normal.vcm              Univariate Normal Distribution as a
+                        Varying-Coefficient Model
+olym08                  2008 and 2012 Summer Olympic Final Medal Count
+                        Data
+ordpoisson              Ordinal Poisson Family Function
+oxtemp                  Oxford Temperature Data
+paralogistic            Paralogistic Distribution Family Function
+paretoIV                Pareto(IV/III/II) Distribution Family Functions
+paretoff                Pareto and Truncated Pareto Distribution Family
+                        Functions
+perks                   Perks Distribution Family Function
+perspqrrvglm            Perspective plot for QRR-VGLMs
+pgamma.deriv            Derivatives of the Incomplete Gamma Integral
+pgamma.deriv.unscaled   Derivatives of the Incomplete Gamma Integral
+                        (Unscaled Version)
+plackett                Plackett's Bivariate Distribution Family
+                        Function
+plotdeplot.lmscreg      Density Plot for LMS Quantile Regression
+plotqrrvglm             Model Diagnostic Plots for QRR-VGLMs
+plotqtplot.lmscreg      Quantile Plot for LMS Quantile Regression
+plotrcim0               Main effects plot for a Row-Column Interaction
+                        Model (RCIM)
+plotvgam                Default VGAM Plotting
+plotvgam.control        Control Function for plotvgam()
+plotvglm                Plots for VGLMs
+pneumo                  Pneumoconiosis in Coalminers Data
+poisson.points          Poisson-points-on-a-plane/volume Distances
+                        Distribution
+poissonff               Poisson Family Function
+polf                    Poisson-Ordinal Link Function
+posbernUC               Positive Bernoulli Sequence Model
+posbernoulli.b          Positive Bernoulli Family Function with
+                        Behavioural Effects
+posbernoulli.t          Positive Bernoulli Family Function with Time
+                        Effects
+posbernoulli.tb         Positive Bernoulli Family Function with Time
+                        and Behavioural Effects
+posbinomial             Positive Binomial Distribution Family Function
+posnegbinomial          Positive Negative Binomial Distribution Family
+                        Function
+posnormal               Positive Normal Distribution Family Function
+pospoisson              Positive Poisson Distribution Family Function
+powerlink               Power Link Function
+prats                   Pregnant Rats Toxological Experiment Data
+predictqrrvglm          Predict Method for a CQO fit
+predictvglm             Predict Method for a VGLM fit
+prentice74              Prentice (1974) Log-gamma Distribution
+prinia                  Yellow-bellied Prinia
+probit                  Probit Link Function
+propodds                Proportional Odds Model for Ordinal Regression
+prplot                  Probability Plots for Categorical Data Analysis
+put.smart               Adds a List to the End of the List
+                        ".smart.prediction"
+qrrvglm.control         Control function for QRR-VGLMs (CQO)
+qtplot.gumbel           Quantile Plot for Gumbel Regression
+qtplot.lmscreg          Quantile Plot for LMS Quantile Regression
+quasibinomialff         Quasi-Binomial Family Function
+quasipoissonff          Quasi-Poisson Family Function
+qvar                    Quasi-variances Extraction Function
+rayleigh                Rayleigh Distribution Family Function
+rcqo                    Constrained Quadratic Ordination
+rdiric                  The Dirichlet distribution
+recexp1                 Upper Record Values from a 1-parameter
+                        Exponential Distribution
+reciprocal              Reciprocal link function
+recnormal               Upper Record Values from a Univariate Normal
+                        Distribution
+rhobit                  Rhobit Link Function
+riceff                  Rice Distribution Family Function
+rigff                   Reciprocal Inverse Gaussian distribution
+rlplot.egev             Return Level Plot for GEV Fits
+rrar                    Nested reduced-rank autoregressive models for
+                        multiple time series
+rrvglm                  Fitting Reduced-Rank Vector Generalized Linear
+                        Models (RR-VGLMs)
+rrvglm-class            Class "rrvglm"
+rrvglm.control          Control function for rrvglm
+rrvglm.optim.control    Control function for rrvglm() calling optim()
+ruge                    Rutherford-Geiger Polonium Data
+s                       Defining smooths in VGAM formulae
+seq2binomial            The Two-stage Sequential Binomial Distribution
+                        Family Function
+setup.smart             Smart Prediction Setup
+simplex                 Simplex Distribution Family Function
+simulate.vlm            Simulate Responses for VGLMs and VGAMs
+sinmad                  Singh-Maddala Distribution Family Function
+skellam                 Skellam Distribution Family Function
+skewnorm                Skew-Normal Distribution
+skewnormal              Univariate Skew-Normal Distribution Family
+                        Function
+slash                   Slash Distribution Family Function
+smart.expression        S Expression for Smart Functions
+smart.mode.is           Determine What Mode the Smart Prediction is In
+smartpred               Smart Prediction
+sratio                  Ordinal Regression with Stopping Ratios
+studentt                Student t Distribution
+tikuv                   Short-tailed Symmetric Distribution Family
+                        Function
+tobit                   Tobit Model
+toxop                   Toxoplasmosis Data
+triangle                Triangle Distribution Family Function
+trplot                  Trajectory Plot
+trplot.qrrvglm          Trajectory plot for QRR-VGLMs
+truncweibull            Truncated Weibull Distribution Family Function
+ucberk                  University California Berkeley Graduate
+                        Admissions
+uninormal               Univariate Normal Distribution
+venice                  Venice Maximum Sea Levels Data
+vgam                    Fitting Vector Generalized Additive Models
+vgam-class              Class "vgam"
+vgam.control            Control function for vgam
+vglm                    Fitting Vector Generalized Linear Models
+vglm-class              Class "vglm"
+vglm.control            Control function for vglm
+vglmff-class            Class "vglmff"
+vonmises                von Mises Distribution Family Function
+vsmooth.spline          Vector cubic smoothing spline
+waitakere               Waitakere Ranges Data
+waldff                  Wald Distribution Family Function
+weibull                 Weibull Distribution Family Function
+weightsvglm             Prior and Working Weights of a VGLM fit
+wine                    Bitterness in Wine Data
+wrapup.smart            Cleans Up After Smart Prediction
+yeo.johnson             Yeo-Johnson Transformation
+yip88                   Zero-Inflated Poisson Distribution (Yip (1988)
+                        algorithm)
+yulesimon               Yule-Simon Family Function
+zabinomial              Zero-Altered Binomial Distribution
+zageometric             Zero-Altered Geometric Distribution
+zanegbinomial           Zero-Altered Negative Binomial Distribution
+zapoisson               Zero-Altered Poisson Distribution
+zero                    The zero Argument in VGAM Family Functions
+zeta                    Riemann's Zeta Function
+zetaff                  Zeta Distribution Family Function
+zibinomial              Zero-Inflated Binomial Distribution Family
+                        Function
+zigeometric             Zero-Inflated Geometric Distribution Family
+                        Function
+zinegbinomial           Zero-Inflated Negative Binomial Distribution
+                        Family Function
+zipebcom                Exchangeable bivariate cloglog odds-ratio model
+                        from a zero-inflated Poisson distribution
+zipf                    Zipf Distribution Family Function
+zipoisson               Zero-Inflated Poisson Distribution Family
+                        Function
