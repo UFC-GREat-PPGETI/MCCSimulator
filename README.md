@@ -1,12 +1,8 @@
 # MCC Modeling and Simulation 
 
-Welcome to MCC Modeling and Simulation  project.. In this project, we are modeling and simulating a MCC architecture.
+Welcome to MCC Modeling and Simulation project.
 
-We focus on offloading decistion (static and dynamic approach). Static approach only marks a given Task to be offloaded. Dynamic 
-approach works considering aspects as said by [1].
-
-
-
+Due to a lack of models and simulation tools to study and analyze mobile devices resource limitation using cloud computing as a solution, this project consists in modeling and simulation of an MCC architecture in which we focus on offloading decision (static and dynamic approach). The static approach only marks a given Task to be offloaded while the dynamic one works considering the tradeoffs between computation and communication [1].
 
 [1] - Karthik Kumar, Jibang Liu, Yung-Hsiang Lu, and Bharat Bhargava. 2013. 
 A Survey of Computation Offloading for Mobile Systems. Mob. Netw. Appl. 18, 1 (February 2013), 1
